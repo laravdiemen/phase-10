@@ -1,5 +1,7 @@
 import { type ReactNode } from "react";
 
+import Heading from "@/app/_ui/Heading";
+
 type GameLayoutProps = {
   children: ReactNode;
 };
@@ -7,7 +9,9 @@ type GameLayoutProps = {
 export default function GameLayout({ children }: GameLayoutProps) {
   return (
     <>
-      <h1>Phase 10</h1>
+      <Heading as="h1" className="text-center">
+        Phase 10
+      </Heading>
       {children}
     </>
   );
