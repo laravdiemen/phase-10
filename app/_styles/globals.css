@@ -3,11 +3,83 @@
 @theme inline {
   --font-sans: var(--font-roboto), sans-serif;
   --font-russo-one: var(--font-russo-one), sans-serif;
+
+  --color-red: var(--color-red-500);
+  --color-red-50: #fbe6e8;
+  --color-red-100: #f7ccd1;
+  --color-red-200: #f099a4;
+  --color-red-300: #e86676;
+  --color-red-400: #e13349;
+  --color-red-500: #d9001b; /* 5.29:1 contrast with white */
+  --color-red-600: #c30018;
+  --color-red-700: #980013;
+  --color-red-800: #6d000e;
+  --color-red-900: #410008;
+  --color-red-950: #2b0005;
+
+  --color-blue: var(--color-blue-500);
+  --color-blue-50: #e6eefa;
+  --color-blue-100: #ccdef5;
+  --color-blue-200: #99bdeb;
+  --color-blue-300: #669be0;
+  --color-blue-400: #337ad6;
+  --color-blue-500: #0059cc; /* 6.36:1 contrast with white */
+  --color-blue-600: #0050b8;
+  --color-blue-700: #003e8f;
+  --color-blue-800: #002d66;
+  --color-blue-900: #001b3d;
+  --color-blue-950: #001229;
+
+  --color-green: var(--color-green-500);
+  --color-green-50: #eaf4eb;
+  --color-green-100: #d4ead6;
+  --color-green-200: #a9d4ae;
+  --color-green-300: #7fbf85;
+  --color-green-400: #54a95d;
+  --color-green-500: #299434; /* 3.9:1 contrast with white | 5.38:1 contrast with black */
+  --color-green-600: #25852f;
+  --color-green-700: #1d6824;
+  --color-green-800: #154a1a;
+  --color-green-900: #0c2c10;
+  --color-green-950: #081e0a;
+
+  --color-yellow: var(--color-yellow-500);
+  --color-yellow-50: #fdf8ea;
+  --color-yellow-100: #faf0d5;
+  --color-yellow-200: #f6e1ac;
+  --color-yellow-300: #f1d382;
+  --color-yellow-400: #edc459;
+  --color-yellow-500: #e8b52f; /* 1.9:1 contrast with white | 11.08:1 contrast with black */
+  --color-yellow-600: #d1a32a;
+  --color-yellow-700: #a27f21;
+  --color-yellow-800: #745b18;
+  --color-yellow-900: #46360e;
+  --color-yellow-950: #2e2409;
 }
 
 @custom-variant hocus {
   &:hover,
   &:focus {
     @slot;
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }

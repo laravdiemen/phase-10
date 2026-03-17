@@ -30,8 +30,12 @@ type RootLayoutProps = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="nl">
-      <body className={`${russoOne.variable} ${roboto.variable} antialiased`}>
-        <main>{children}</main>
+      <body
+        className={`${russoOne.variable} ${roboto.variable} bg-stone-50 font-sans text-stone-950 antialiased`}
+      >
+        <main className="mx-auto flex min-h-screen max-w-7xl px-4 py-6">
+          {children}
+        </main>
       </body>
     </html>
   );
