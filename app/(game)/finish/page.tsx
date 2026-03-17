@@ -1,6 +1,6 @@
 import { type Metadata } from "next";
-import Link from "next/link";
 
+import ButtonLink from "@/app/_ui/ButtonLink";
 import Heading from "@/app/_ui/Heading";
 
 export const metadata: Metadata = {
@@ -11,7 +11,7 @@ export default function FinishPage() {
   return (
     <>
       <Heading as="h2">Winnaar</Heading>
-      <Link href="/setup">Start nieuw spel</Link>
+      <ButtonLink href="/setup">Start nieuw spel</ButtonLink>
     </>
   );
 }

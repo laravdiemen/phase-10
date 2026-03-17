@@ -4,3 +4,10 @@
   --font-sans: var(--font-roboto), sans-serif;
   --font-russo-one: var(--font-russo-one), sans-serif;
 }
+
+@custom-variant hocus {
+  &:hover,
+  &:focus {
+    @slot;
+  }
+}

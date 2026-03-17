@@ -1,5 +1,4 @@
-import Link from "next/link";
-
+import ButtonLink from "@/app/_ui/ButtonLink";
 import Heading from "@/app/_ui/Heading";
 
 export default function Page() {
@@ -9,8 +8,10 @@ export default function Page() {
         Phase 10
       </Heading>
 
-      <Link href="/setup">Start nieuw spel</Link>
-      <Link href="/game">Hervat huidig spel</Link>
+      <div className="flex flex-col items-center gap-2">
+        <ButtonLink href="/setup">Start nieuw spel</ButtonLink>
+        <ButtonLink href="/game">Hervat huidig spel</ButtonLink>
+      </div>
     </>
   );
 }

@@ -1,6 +1,6 @@
 import { type Metadata } from "next";
-import Link from "next/link";
 
+import ButtonLink from "@/app/_ui/ButtonLink";
 import Heading from "@/app/_ui/Heading";
 
 export const metadata: Metadata = {
@@ -11,7 +11,7 @@ export default function GamePage() {
   return (
     <>
       <Heading as="h2">Spel</Heading>
-      <Link href="/add-points">Punten toevoegen</Link>
+      <ButtonLink href="/add-points">Punten toevoegen</ButtonLink>
     </>
   );
 }
