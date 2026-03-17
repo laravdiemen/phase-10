@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Russo_One, Roboto } from "next/font/google";
+
 import "@/app/_styles/globals.css";
 
 const russoOne = Russo_One({
