@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
+import { type Metadata } from "next";
 import { Russo_One, Roboto } from "next/font/google";
+import { type ReactNode } from "react";
 
 import "@/app/_styles/globals.css";
 
@@ -17,20 +18,20 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   title: {
     template: "%s | Phase 10",
-    default: "Start | Phase 10",
+    default: "Welkom | Phase 10",
   },
-  description: "Speel Phase 10 en houd je scores bij met deze handige app.",
+  description: "Speel Phase 10 en houd de punten en fases bij.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+type RootLayoutProps = {
+  children: ReactNode;
+};
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="nl">
       <body className={`${russoOne.variable} ${roboto.variable} antialiased`}>
-        {children}
+        <main>{children}</main>
       </body>
     </html>
   );
