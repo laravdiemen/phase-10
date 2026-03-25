@@ -30,14 +30,14 @@
   --color-blue-900: #001b3d;
   --color-blue-950: #001229;
 
-  --color-green: var(--color-green-500);
+  --color-green: var(--color-green-600);
   --color-green-50: #eaf4eb;
   --color-green-100: #d4ead6;
   --color-green-200: #a9d4ae;
   --color-green-300: #7fbf85;
   --color-green-400: #54a95d;
   --color-green-500: #299434; /* 3.9:1 contrast with white | 5.38:1 contrast with black */
-  --color-green-600: #25852f;
+  --color-green-600: #25852f; /* 4.69:1 contrast with white */
   --color-green-700: #1d6824;
   --color-green-800: #154a1a;
   --color-green-900: #0c2c10;

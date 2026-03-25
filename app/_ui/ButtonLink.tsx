@@ -8,11 +8,11 @@ type ButtonLinkProps = LinkProps & {
 };
 
 const variantClasses = {
-  default: "hocus:bg-blue-900 bg-blue-600 text-white",
-  red: "hocus:bg-red-900 bg-red-600 text-white",
-  blue: "hocus:bg-blue-900 bg-blue-600 text-white",
-  green: "hocus:bg-green-900 bg-green-600 text-white",
-  yellow: "hocus:bg-yellow-600 bg-yellow-500 text-black",
+  default: "hocus:bg-blue-900 shadow-blue-100 bg-blue-600 text-white",
+  red: "hocus:bg-red-800 shadow-red-100 bg-red-600 text-white",
+  blue: "hocus:bg-blue-900 shadow-blue-100 bg-blue-600 text-white",
+  green: "hocus:bg-green-900 shadow-green-100 bg-green-600 text-white",
+  yellow: "hocus:bg-yellow-600 shadow-yellow-100 bg-yellow-500 text-black",
 };
 
 export default function ButtonLink({
@@ -26,7 +26,7 @@ export default function ButtonLink({
   return (
     <Link
       {...props}
-      className={`w-fit rounded-xl px-6 py-4 font-bold transition-all duration-300 ${variantClass} ${className}`}
+      className={`flex w-fit items-center gap-2 rounded-xl px-6 py-4 font-bold uppercase shadow-xl transition-all duration-300 ${variantClass} ${className}`}
     >
       {children}
     </Link>
