@@ -7,7 +7,7 @@ type HeadingProps = {
 };
 
 const defaultClasses = {
-  h1: "font-russo-one text-7xl -skew-x-12 mb-2",
+  h1: "font-russo-one text-7xl md:text-8xl -skew-x-12 mb-2",
   h2: "text-3xl font-bold mb-2",
   h3: "text-2xl font-medium mb-2",
   h4: "text-xl font-medium mb-2",
