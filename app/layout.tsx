@@ -34,6 +34,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
         className={`${russoOne.variable} ${roboto.variable} bg-stone-50 font-sans text-stone-950 antialiased`}
       >
         <main className="mx-auto flex min-h-screen max-w-7xl px-4 py-6">
+          <div
+            className="pointer-events-none fixed inset-0 -z-1"
+            aria-hidden="true"
+          >
+            <div className="from-red/15 absolute -top-[15vw] -right-[10vw] size-[75vw] rounded-full bg-radial via-stone-50 to-stone-50 backdrop-blur-xl md:size-[50vw]"></div>
+            <div className="from-yellow/25 absolute -bottom-[15vw] -left-[10vw] size-[75vw] rounded-full bg-radial via-stone-50 to-stone-50 backdrop-blur-xl md:size-[50vw]"></div>
+          </div>
           {children}
         </main>
       </body>

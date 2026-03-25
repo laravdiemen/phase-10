@@ -15,7 +15,7 @@ export default function GameSettings() {
   return (
     <Card>
       <Heading as="h3" className="mb-4 flex items-center gap-3">
-        <AdjustmentsHorizontalIcon className="size-6" />
+        <AdjustmentsHorizontalIcon className="icon-square" />
         Spelinstellingen
       </Heading>
 
@@ -27,6 +27,7 @@ export default function GameSettings() {
             handleOnChange={setPhase}
             name="phases"
             selectedValue={phase}
+            variant="green"
           />
         </fieldset>
       </div>
@@ -41,7 +42,7 @@ export default function GameSettings() {
             handleOnChange={setPhaseOrder}
             name="phase-order"
             selectedValue={phaseOrder}
-            variant="green"
+            variant="red"
           />
         </fieldset>
       </div>

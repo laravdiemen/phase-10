@@ -39,7 +39,7 @@ export default function Players() {
   return (
     <Card>
       <Heading as="h3" className="mb-4 flex items-center gap-3">
-        <UserGroupIcon className="size-6" />
+        <UserGroupIcon className="icon-square" />
         Spelers
         <span className="ml-auto">
           {players.length}/{MAX_PLAYERS}
