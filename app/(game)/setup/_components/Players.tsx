@@ -38,7 +38,7 @@ export default function Players() {
 
   return (
     <Card>
-      <Heading as="h3" className="mb-4 flex items-center gap-3">
+      <Heading as="h3">
         <UserGroupIcon className="icon-square" />
         Spelers
         <span className="ml-auto">

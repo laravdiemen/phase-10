@@ -14,7 +14,7 @@ export default function GameSettings() {
 
   return (
     <Card>
-      <Heading as="h3" className="mb-4 flex items-center gap-3">
+      <Heading as="h3">
         <AdjustmentsHorizontalIcon className="icon-square" />
         Spelinstellingen
       </Heading>

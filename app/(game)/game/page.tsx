@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function GamePage() {
   return (
     <>
-      <Heading as="h2" className="text-center text-stone-500">
+      <Heading as="h2" className="text-center">
         Ronde {DUMMY_CURRENT_ROUND}
       </Heading>
 
@@ -24,7 +24,7 @@ export default function GamePage() {
       </div>
 
       <ButtonLink href="/add-points" variant="green" className="mx-auto">
-        <PlusIcon className="size-6" />
+        <PlusIcon />
         Punten toevoegen
       </ButtonLink>
     </>

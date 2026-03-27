@@ -16,11 +16,11 @@ export default function Page() {
 
       <div className="flex flex-col items-center gap-4">
         <ButtonLink href="/setup" variant="blue">
-          <PlayIcon className="size-6" />
+          <PlayIcon />
           Start nieuw spel
         </ButtonLink>
         <ButtonLink href="/game" variant="green">
-          <ArrowPathRoundedSquareIcon className="size-6" />
+          <ArrowPathRoundedSquareIcon />
           Hervat huidig spel
         </ButtonLink>
       </div>

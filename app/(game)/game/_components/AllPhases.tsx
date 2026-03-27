@@ -11,7 +11,7 @@ import Heading from "@/app/_ui/Heading";
 export default function AllPhases() {
   return (
     <Card>
-      <Heading as="h3" className="mb-4 flex items-center gap-3">
+      <Heading as="h3">
         <Square3Stack3DIcon className="icon-square" />
         Alle fasen
       </Heading>

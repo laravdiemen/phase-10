@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function SetupPage() {
   return (
     <>
-      <Heading as="h2" className="text-center text-stone-500">
+      <Heading as="h2" className="text-center">
         Nieuw spel opstarten
       </Heading>
 
@@ -23,7 +23,7 @@ export default function SetupPage() {
       </div>
 
       <ButtonLink href="/game" variant="yellow" className="mx-auto">
-        <PlayIcon className="size-6" />
+        <PlayIcon />
         Start het spel
       </ButtonLink>
     </>

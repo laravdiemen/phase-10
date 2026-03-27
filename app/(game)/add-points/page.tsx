@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function AddPointsPage() {
   return (
     <>
-      <Heading as="h2" className="text-center text-stone-500">
+      <Heading as="h2" className="text-center">
         Punten toevoegen voor ronde {DUMMY_CURRENT_ROUND}
       </Heading>
 
@@ -24,7 +24,7 @@ export default function AddPointsPage() {
       </div>
 
       <ButtonLink href="/game" className="mx-auto">
-        <ArchiveBoxIcon className="size-6" />
+        <ArchiveBoxIcon />
         Opslaan
       </ButtonLink>
     </>

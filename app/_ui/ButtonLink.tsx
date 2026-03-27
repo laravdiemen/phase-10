@@ -26,7 +26,7 @@ export default function ButtonLink({
   return (
     <Link
       {...props}
-      className={`flex w-fit items-center gap-2 rounded-xl px-6 py-4 font-bold uppercase shadow-xl transition-all duration-300 ${variantClass} ${className}`}
+      className={`flex w-fit items-center gap-2 rounded-xl px-6 py-4 font-bold uppercase shadow-xl transition-all duration-300 [&_svg]:size-6 ${variantClass} ${className}`}
     >
       {children}
     </Link>

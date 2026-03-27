@@ -19,9 +19,7 @@ export default function AddPlayerPoints({ player }: AddPlayerPointsProps) {
 
   return (
     <Card className="flex flex-col">
-      <Heading as="h3" className="mb-4">
-        {player.name}
-      </Heading>
+      <Heading as="h3">{player.name}</Heading>
       <div className="auto-grid [--min-column:200px]">
         <fieldset>
           <legend className="mb-1 font-medium">Fase behaald?</legend>

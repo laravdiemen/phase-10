@@ -11,7 +11,7 @@ import Heading from "@/app/_ui/Heading";
 export default function Standings() {
   return (
     <Card>
-      <Heading as="h3" className="mb-4 flex items-center gap-3">
+      <Heading as="h3">
         <ChartBarIcon className="icon-square" />
         Huidige stand
       </Heading>
@@ -19,7 +19,7 @@ export default function Standings() {
       {DUMMY_PLAYERS.map((player) => (
         <div
           key={player.key}
-          className="mb-4 flex items-center gap-3 rounded-xl bg-stone-100 px-5 py-3"
+          className="mb-4 rounded-xl bg-stone-100 px-5 py-3"
         >
           <div className="flex flex-col">
             <span className="font-medium">
