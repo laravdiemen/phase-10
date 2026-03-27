@@ -1,6 +1,8 @@
 // I designed the application now with dummy data. This file is going to be deleted when there is a global state management solution.
 
-export const DUMMY_PLAYERS = [
+import { type Phase, type Player } from "@/app/_lib/types";
+
+export const DUMMY_PLAYERS: Player[] = [
   {
     key: 0,
     name: "John Doe",
@@ -21,13 +23,13 @@ export const DUMMY_PLAYERS = [
   },
 ];
 
-export const DUMMY_DISTRIBUTOR_PLAYER = DUMMY_PLAYERS[0].key;
+export const DUMMY_DISTRIBUTOR_PLAYER: Player["key"] = DUMMY_PLAYERS[0].key;
 
-export const DUMMY_STARTING_PLAYER = DUMMY_PLAYERS[1].key;
+export const DUMMY_STARTING_PLAYER: Player["key"] = DUMMY_PLAYERS[1].key;
 
-export const DUMMY_CURRENT_ROUND = 3;
+export const DUMMY_CURRENT_ROUND: number = 3;
 
-export const DUMMY_PHASES = [
+export const DUMMY_PHASES: Phase[] = [
   {
     key: 0,
     name: "Fase 1",
@@ -80,6 +82,6 @@ export const DUMMY_PHASES = [
   },
 ];
 
-export const DUMMY_CURRENT_PHASE = 4;
+export const DUMMY_CURRENT_PHASE: number = 4;
 
-export const DUMMY_FINISHED_PHASES = [1, 2];
+export const DUMMY_FINISHED_PHASES: number[] = [1, 2];

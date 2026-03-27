@@ -17,7 +17,7 @@ export default function SetupPage() {
         Nieuw spel opstarten
       </Heading>
 
-      <div className="my-10 grid gap-6 md:grid-cols-2">
+      <div className="auto-grid my-10">
         <Players />
         <GameSettings />
       </div>

@@ -1,9 +1,11 @@
+import { type ColorVariant, type RadioChoice } from "@/app/_lib/types";
+
 type RadioGroupProps = {
-  choices: { value: string; label: string }[];
+  choices: RadioChoice[];
   handleOnChange: (value: string) => void;
   name: string;
   selectedValue: string;
-  variant?: "default" | "red" | "blue" | "green" | "yellow";
+  variant?: ColorVariant;
 };
 
 const variantClasses = {
@@ -24,7 +26,7 @@ export default function RadioGroup({
   const variantClass = variantClasses[variant] || "";
 
   return (
-    <div className="grid grid-cols-1 gap-1 rounded-xl bg-stone-100 p-2 sm:grid-cols-3">
+    <div className="auto-grid rounded-xl bg-stone-100 p-2 [--gap:0.25rem] [--min-column:110px]">
       {choices.map((choice) => (
         <div
           key={choice.value}
@@ -32,7 +34,7 @@ export default function RadioGroup({
         >
           <input
             type="radio"
-            id={choice.value}
+            id={`${name}-${choice.value}`}
             name={name}
             value={choice.value}
             checked={selectedValue === choice.value}
@@ -40,7 +42,7 @@ export default function RadioGroup({
             className="appearance-none"
           />
           <label
-            htmlFor={choice.value}
+            htmlFor={`${name}-${choice.value}`}
             className="w-full px-4 py-2.5 wrap-break-word"
           >
             {choice.label}

@@ -18,7 +18,7 @@ export default function GamePage() {
         Ronde {DUMMY_CURRENT_ROUND}
       </Heading>
 
-      <div className="my-10 grid gap-6 lg:grid-cols-2">
+      <div className="auto-grid my-10">
         <Standings />
         <AllPhases />
       </div>

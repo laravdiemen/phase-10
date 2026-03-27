@@ -64,6 +64,20 @@
   }
 }
 
+/**
+ * Create a responsive grid with a minimum column width and automatic column count based on available space.
+ * --gap: The gap between grid items.
+ * --min-column: The minimum width of each column.
+ * --mode: The grid mode. Use 'auto-fill' to fill the row with empty columns if there is extra space.
+ */
+@utility auto-grid {
+  @apply grid gap-(--gap,1.5rem);
+  grid-template-columns: repeat(
+    var(--mode, auto-fit),
+    minmax(min(100%, var(--min-column, 450px)), 1fr)
+  );
+}
+
 @utility icon-square {
   @apply text-blue size-10 rounded-lg bg-blue-100 p-2;
 }

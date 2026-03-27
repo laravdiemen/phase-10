@@ -1,6 +1,10 @@
-export const MAX_PLAYERS = 6;
+import { type Colors, type RadioChoice } from "@/app/_lib/types";
 
-export const PHASE_CHOICES = [
+export const COLORS_ORDER: Colors[] = ["red", "yellow", "green", "blue"];
+
+export const MAX_PLAYERS: number = 6;
+
+export const PHASE_CHOICES: RadioChoice[] = [
   {
     value: "default",
     label: "Standaard",
@@ -15,7 +19,7 @@ export const PHASE_CHOICES = [
   },
 ];
 
-export const PHASE_ORDER_CHOICES = [
+export const PHASE_ORDER_CHOICES: RadioChoice[] = [
   {
     value: "normal",
     label: "Normaal",
@@ -27,5 +31,16 @@ export const PHASE_ORDER_CHOICES = [
   {
     value: "free-choice",
     label: "Vrije keuze",
+  },
+];
+
+export const PHASE_COMPLETED_CHOICES: RadioChoice[] = [
+  {
+    value: "yes",
+    label: "Ja",
+  },
+  {
+    value: "no",
+    label: "Nee",
   },
 ];
