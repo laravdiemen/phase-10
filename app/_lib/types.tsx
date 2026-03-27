@@ -2,10 +2,14 @@ export type Colors = "red" | "blue" | "green" | "yellow";
 
 export type ColorVariant = Colors | "default";
 
-export type RadioChoice = {
-  value: string;
+export type RadioChoice<T = string> = {
+  value: T;
   label: string;
 };
+
+export type PhaseChoices = "default" | "short" | "selection";
+
+export type PhaseOrderChoices = "normal" | "random" | "free-choice";
 
 export type Player = {
   key: number;

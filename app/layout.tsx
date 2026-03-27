@@ -2,6 +2,7 @@ import { type Metadata } from "next";
 import { Russo_One, Roboto } from "next/font/google";
 import { type ReactNode } from "react";
 
+import { DataProvider } from "@/app/_contexts/DataContext";
 import "@/app/_styles/globals.css";
 
 const russoOne = Russo_One({
@@ -41,7 +42,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <div className="from-red/15 absolute -top-[15vw] -right-[10vw] size-[75vw] rounded-full bg-radial via-stone-50 to-stone-50 backdrop-blur-xl md:size-[50vw]"></div>
             <div className="from-yellow/25 absolute -bottom-[15vw] -left-[10vw] size-[75vw] rounded-full bg-radial via-stone-50 to-stone-50 backdrop-blur-xl md:size-[50vw]"></div>
           </div>
-          {children}
+          <DataProvider>{children}</DataProvider>
         </main>
       </body>
     </html>

@@ -1,16 +1,20 @@
 "use client";
 
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";
-import { useState } from "react";
 
+import { useData } from "@/app/_contexts/DataContext";
 import { PHASE_CHOICES, PHASE_ORDER_CHOICES } from "@/app/_lib/constants";
+import { type PhaseChoices, type PhaseOrderChoices } from "@/app/_lib/types";
 import Card from "@/app/_ui/Card";
 import Heading from "@/app/_ui/Heading";
 import RadioGroup from "@/app/_ui/RadioGroup";
 
 export default function GameSettings() {
-  const [phase, setPhase] = useState(PHASE_CHOICES[0].value);
-  const [phaseOrder, setPhaseOrder] = useState(PHASE_ORDER_CHOICES[0].value);
+  const {
+    settings: { phaseChoice, phaseOrderChoice },
+    setPhaseChoice,
+    setPhaseOrderChoice,
+  } = useData();
 
   return (
     <Card>
@@ -24,9 +28,9 @@ export default function GameSettings() {
           <legend className="mb-1 font-medium">Kies de fasen</legend>
           <RadioGroup
             choices={PHASE_CHOICES}
-            handleOnChange={setPhase}
+            handleOnChange={(value) => setPhaseChoice(value as PhaseChoices)}
             name="phases"
-            selectedValue={phase}
+            selectedValue={phaseChoice}
             variant="green"
           />
         </fieldset>
@@ -39,9 +43,11 @@ export default function GameSettings() {
           </legend>
           <RadioGroup
             choices={PHASE_ORDER_CHOICES}
-            handleOnChange={setPhaseOrder}
+            handleOnChange={(value) =>
+              setPhaseOrderChoice(value as PhaseOrderChoices)
+            }
             name="phase-order"
-            selectedValue={phaseOrder}
+            selectedValue={phaseOrderChoice}
             variant="red"
           />
         </fieldset>

@@ -1,23 +1,17 @@
 "use client";
 
 import { PlusIcon, UserGroupIcon } from "@heroicons/react/24/solid";
-import { useState } from "react";
 
+import { useData } from "@/app/_contexts/DataContext";
 import { MAX_PLAYERS } from "@/app/_lib/constants";
 import Card from "@/app/_ui/Card";
 import Heading from "@/app/_ui/Heading";
 
 export default function Players() {
-  const [players, setPlayers] = useState([
-    {
-      key: 0,
-      name: "",
-    },
-    {
-      key: 1,
-      name: "",
-    },
-  ]);
+  const {
+    settings: { players },
+    setPlayers,
+  } = useData();
 
   const handleOnChange = (index: number, value: string) => {
     const newPlayers = [...players];
@@ -27,7 +21,7 @@ export default function Players() {
 
   const handleAddPlayer = () => {
     const newPlayer = {
-      key: players.length,
+      number: players.length + 1,
       name: "",
     };
 
@@ -46,10 +40,10 @@ export default function Players() {
         </span>
       </Heading>
 
-      {players.map((player, index) => (
+      {players.map(({ number, name }, index) => (
         <div key={index} className="mb-4 flex flex-col gap-1">
           <label htmlFor={`player-${index}`} className="font-medium">
-            Speler {index + 1}
+            Speler {number}
           </label>
           <input
             type="text"
@@ -57,7 +51,7 @@ export default function Players() {
             name={`player-${index}`}
             placeholder="Vul de naam van de speler in..."
             className="rounded-xl border border-stone-300 px-5 py-3"
-            value={player.name}
+            value={name}
             onChange={(e) => handleOnChange(index, e.target.value)}
           />
         </div>

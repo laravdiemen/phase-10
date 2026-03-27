@@ -19,7 +19,7 @@ export default function Standings() {
       {DUMMY_PLAYERS.map((player) => (
         <div
           key={player.key}
-          className="mb-4 rounded-xl bg-stone-100 px-5 py-3"
+          className="mb-4 flex rounded-xl bg-stone-100 px-5 py-3"
         >
           <div className="flex flex-col">
             <span className="font-medium">
