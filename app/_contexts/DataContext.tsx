@@ -3,6 +3,7 @@
 import { createContext, useCallback, useContext, useMemo } from "react";
 import { useLocalStorage } from "usehooks-ts";
 
+import { PHASES, PHASES_SHORT } from "@/app/_lib/constants";
 import { type PhaseChoices, type PhaseOrderChoices } from "@/app/_lib/types";
 
 type Player = {
@@ -53,6 +54,7 @@ type DataContextType = {
   setPlayers: (players: Player[]) => void;
   setPhaseChoice: (phaseChoice: PhaseChoices) => void;
   setPhaseOrderChoice: (phaseOrderChoice: PhaseOrderChoices) => void;
+  setPhases: (phases: Phase[]) => void;
 };
 
 const defaultData: Pick<
@@ -68,7 +70,7 @@ const defaultData: Pick<
     ],
     phaseChoice: "default",
     phaseOrderChoice: "normal",
-    phases: [],
+    phases: PHASES,
   },
   rounds: [],
   standings: [],
@@ -77,7 +79,9 @@ const defaultData: Pick<
 const dataContext = createContext<DataContextType | undefined>(undefined);
 
 export function DataProvider({ children }: { children: React.ReactNode }) {
-  const [data, setData] = useLocalStorage("phase-10-data", defaultData);
+  const [data, setData] = useLocalStorage("phase-10-data", defaultData, {
+    initializeWithValue: false,
+  });
 
   const updateData = useCallback(
     <K extends keyof DataContextType>(key: K, value: DataContextType[K]) => {
@@ -126,6 +130,14 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
   const setPhaseChoice = useCallback(
     (phaseChoice: PhaseChoices) => {
       updateSettings("phaseChoice", phaseChoice);
+
+      if (phaseChoice === "default") {
+        updateSettings("phases", PHASES);
+      } else if (phaseChoice === "short") {
+        updateSettings("phases", PHASES_SHORT);
+      } else {
+        updateSettings("phases", []);
+      }
     },
     [updateSettings],
   );
@@ -133,6 +145,25 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
   const setPhaseOrderChoice = useCallback(
     (phaseOrderChoice: PhaseOrderChoices) => {
       updateSettings("phaseOrderChoice", phaseOrderChoice);
+
+      if (phaseOrderChoice === "random") {
+        const shuffledPhases = [...data.settings.phases].sort(
+          () => Math.random() - 0.5,
+        );
+        updateSettings("phases", shuffledPhases);
+      } else {
+        const sortedPhases = [...data.settings.phases].sort(
+          (a, b) => a.number - b.number,
+        );
+        updateSettings("phases", sortedPhases);
+      }
+    },
+    [updateSettings, data.settings.phases],
+  );
+
+  const setPhases = useCallback(
+    (phases: Phase[]) => {
+      updateSettings("phases", phases);
     },
     [updateSettings],
   );
@@ -145,6 +176,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       setPlayers,
       setPhaseChoice,
       setPhaseOrderChoice,
+      setPhases,
     }),
     [
       data,
@@ -153,6 +185,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       setPlayers,
       setPhaseChoice,
       setPhaseOrderChoice,
+      setPhases,
     ],
   );
 

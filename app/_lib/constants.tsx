@@ -51,3 +51,54 @@ export const PHASE_COMPLETED_CHOICES: RadioChoice[] = [
     label: "Nee",
   },
 ];
+
+export const PHASES = [
+  {
+    number: 1,
+    value: "AAA BBB",
+  },
+  {
+    number: 2,
+    value: "AAA ABCD",
+  },
+  {
+    number: 3,
+    value: "AAAA ABCD",
+  },
+  {
+    number: 4,
+    value: "ABCDEFG",
+  },
+  {
+    number: 5,
+    value: "ABCDEFGH",
+  },
+  {
+    number: 6,
+    value: "ABCDEFGHI",
+  },
+  {
+    number: 7,
+    value: "AAAA BBBB",
+  },
+  {
+    number: 8,
+    value: "CCCCCCC",
+  },
+  {
+    number: 9,
+    value: "AAAAA BB",
+  },
+  {
+    number: 10,
+    value: "AAAAA BBB",
+  },
+];
+
+export const PHASES_SHORT = [
+  PHASES[0],
+  PHASES[2],
+  PHASES[4],
+  PHASES[7],
+  PHASES[8],
+];
