@@ -49,7 +49,7 @@ type DataContextType = {
   settings: Settings;
   rounds: Round[];
   standings: Standings;
-  setIsStarted: (isStarted: boolean) => void;
+  startGame: () => void;
   setIsFinished: (isFinished: boolean) => void;
   setPlayers: (players: Player[]) => void;
   setPhaseChoice: (phaseChoice: PhaseChoices) => void;
@@ -106,12 +106,25 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     [setData],
   );
 
-  const setIsStarted = useCallback(
-    (isStarted: boolean) => {
-      updateData("isStarted", isStarted);
-    },
-    [updateData],
-  );
+  const startGame = useCallback(() => {
+    updateData("isStarted", true);
+    updateData(
+      "standings",
+      data.settings.players.map(({ number }) => ({
+        player: number,
+        currentPhase: 1,
+        points: 0,
+      })),
+    );
+    updateData("rounds", [
+      {
+        round: 1,
+        distributorPlayer: 1,
+        startingPlayer: 2,
+        score: [],
+      },
+    ]);
+  }, [updateData, data.settings.players]);
 
   const setIsFinished = useCallback(
     (isFinished: boolean) => {
@@ -171,7 +184,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
   const value = useMemo(
     () => ({
       ...data,
-      setIsStarted,
+      startGame,
       setIsFinished,
       setPlayers,
       setPhaseChoice,
@@ -180,7 +193,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     }),
     [
       data,
-      setIsStarted,
+      startGame,
       setIsFinished,
       setPlayers,
       setPhaseChoice,

@@ -4,10 +4,15 @@ import { PlusIcon, UserGroupIcon, MinusIcon } from "@heroicons/react/24/solid";
 
 import { useData } from "@/app/_contexts/DataContext";
 import { MAX_PLAYERS, MIN_PLAYERS } from "@/app/_lib/constants";
+import Alert from "@/app/_ui/Alert";
 import Card from "@/app/_ui/Card";
 import Heading from "@/app/_ui/Heading";
 
-export default function Players() {
+type PlayersProps = {
+  errors: { component: string; message: string }[];
+};
+
+export default function Players({ errors }: PlayersProps) {
   const {
     settings: { players },
     setPlayers,
@@ -45,6 +50,12 @@ export default function Players() {
           {players.length}/{MAX_PLAYERS}
         </span>
       </Heading>
+
+      {errors.map((error, index) => (
+        <Alert key={index} variant="error">
+          {error.message}
+        </Alert>
+      ))}
 
       {players.map(({ number, name }, index) => (
         <div key={index} className="mb-4 flex flex-col gap-1">

@@ -1,14 +1,29 @@
+"use client";
+
 import { Square3Stack3DIcon } from "@heroicons/react/24/solid";
 
-import {
-  DUMMY_PHASES,
-  DUMMY_CURRENT_PHASE,
-  DUMMY_FINISHED_PHASES,
-} from "@/app/_lib/dummy-data";
+import { useData } from "@/app/_contexts/DataContext";
 import Card from "@/app/_ui/Card";
 import Heading from "@/app/_ui/Heading";
 
 export default function AllPhases() {
+  const {
+    settings: { phases },
+    standings,
+  } = useData();
+
+  const currentPhase = standings.reduce((max, standing) => {
+    return standing.currentPhase > max ? standing.currentPhase : max;
+  }, 0);
+
+  const lowestCurrentPhase = standings.reduce((min, standing) => {
+    return standing.currentPhase < min ? standing.currentPhase : min;
+  }, 11);
+
+  const finishedPhases = phases
+    .filter((phase) => phase.number < lowestCurrentPhase)
+    .map((phase) => phase.number);
+
   return (
     <Card>
       <Heading as="h3">
@@ -16,23 +31,24 @@ export default function AllPhases() {
         Alle fasen
       </Heading>
       <div className="columns-2">
-        {DUMMY_PHASES.map((phase) => (
-          <div
-            key={phase.key}
-            className={`mb-4 flex flex-col gap-1 rounded-xl px-5 py-3 ${
-              phase.key === DUMMY_CURRENT_PHASE - 1
-                ? "bg-yellow"
-                : "bg-stone-100"
-            } ${DUMMY_FINISHED_PHASES.includes(phase.key + 1) ? "opacity-30" : ""}`}
-          >
-            <span className="font-medium">{phase.name}</span>
-            <span
-              className={`text-sm ${phase.key === DUMMY_CURRENT_PHASE - 1 ? "" : "text-stone-500"}`}
+        {phases.map((phase) => {
+          const isActive = phase.number === currentPhase;
+          const isFinished = finishedPhases.includes(phase.number);
+
+          return (
+            <div
+              key={phase.number}
+              className={`mb-4 flex flex-col gap-1 rounded-xl px-5 py-3 ${
+                isActive ? "bg-yellow" : "bg-stone-100"
+              } ${isFinished ? "opacity-30" : ""}`}
             >
-              {phase.description}
-            </span>
-          </div>
-        ))}
+              <span className="font-medium">Fase {phase.number}</span>
+              <span className={`text-sm ${isActive ? "" : "text-stone-500"}`}>
+                {phase.value}
+              </span>
+            </div>
+          );
+        })}
       </div>
     </Card>
   );

@@ -10,11 +10,16 @@ import {
   PHASES,
 } from "@/app/_lib/constants";
 import { type PhaseChoices, type PhaseOrderChoices } from "@/app/_lib/types";
+import Alert from "@/app/_ui/Alert";
 import Card from "@/app/_ui/Card";
 import Heading from "@/app/_ui/Heading";
 import RadioGroup from "@/app/_ui/RadioGroup";
 
-export default function GameSettings() {
+type GameSettingsProps = {
+  errors: { component: string; message: string }[];
+};
+
+export default function GameSettings({ errors }: GameSettingsProps) {
   const {
     settings: { phaseChoice, phaseOrderChoice, phases },
     setPhaseChoice,
@@ -43,6 +48,12 @@ export default function GameSettings() {
         <AdjustmentsHorizontalIcon className="icon-square" />
         Spelinstellingen
       </Heading>
+
+      {errors.map((error, index) => (
+        <Alert key={index} variant="error">
+          {error.message}
+        </Alert>
+      ))}
 
       <div className="mb-4 flex flex-col gap-1">
         <fieldset>

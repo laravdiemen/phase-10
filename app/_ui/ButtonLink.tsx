@@ -1,11 +1,25 @@
 import Link, { type LinkProps } from "next/link";
-import { type ReactNode } from "react";
+import { type ButtonHTMLAttributes, type ReactNode } from "react";
 
-type ButtonLinkProps = LinkProps & {
+type BaseButtonLinkProps = {
   className?: string;
   children: ReactNode;
   variant?: "default" | "red" | "blue" | "green" | "yellow";
 };
+
+type ButtonLinkAsLinkProps = BaseButtonLinkProps &
+  LinkProps & {
+    href: LinkProps["href"];
+    onClick?: never;
+  };
+
+type ButtonLinkAsButtonProps = BaseButtonLinkProps &
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, "className" | "children"> & {
+    href?: never;
+    onClick: NonNullable<ButtonHTMLAttributes<HTMLButtonElement>["onClick"]>;
+  };
+
+type ButtonLinkProps = ButtonLinkAsLinkProps | ButtonLinkAsButtonProps;
 
 const variantClasses = {
   default: "hocus:bg-blue-900 shadow-blue-100 bg-blue-600 text-white",
@@ -22,13 +36,23 @@ export default function ButtonLink({
   ...props
 }: ButtonLinkProps) {
   const variantClass = variantClasses[variant] || "";
+  const sharedClasses = `flex w-fit items-center gap-2 rounded-xl px-6 py-4 font-bold uppercase shadow-xl transition-all duration-300 [&_svg]:size-6 ${variantClass} ${className}`;
+
+  if ("href" in props) {
+    const linkProps = props as ButtonLinkAsLinkProps;
+
+    return (
+      <Link {...linkProps} className={sharedClasses}>
+        {children}
+      </Link>
+    );
+  }
+
+  const buttonProps = props as ButtonLinkAsButtonProps;
 
   return (
-    <Link
-      {...props}
-      className={`flex w-fit items-center gap-2 rounded-xl px-6 py-4 font-bold uppercase shadow-xl transition-all duration-300 [&_svg]:size-6 ${variantClass} ${className}`}
-    >
+    <button {...buttonProps} className={sharedClasses}>
       {children}
-    </Link>
+    </button>
   );
 }
