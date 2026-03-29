@@ -1,9 +1,4 @@
-import {
-  ArrowPathRoundedSquareIcon,
-  PlayIcon,
-} from "@heroicons/react/24/solid";
-
-import ButtonLink from "@/app/_ui/ButtonLink";
+import StartRestartButtons from "@/app/_components/StartRestartButtons";
 import Card from "@/app/_ui/Card";
 import Heading from "@/app/_ui/Heading";
 
@@ -14,16 +9,7 @@ export default function Page() {
         Phase 10
       </Heading>
 
-      <div className="flex flex-col items-center gap-4">
-        <ButtonLink href="/setup" variant="blue">
-          <PlayIcon />
-          Start nieuw spel
-        </ButtonLink>
-        <ButtonLink href="/game" variant="green">
-          <ArrowPathRoundedSquareIcon />
-          Hervat huidig spel
-        </ButtonLink>
-      </div>
+      <StartRestartButtons />
     </Card>
   );
 }

@@ -43,33 +43,51 @@ type Standings = {
 }[];
 
 type DataContextType = {
+  isStarted: boolean;
+  isFinished: boolean;
   settings: Settings;
   rounds: Round[];
   standings: Standings;
+  setIsStarted: (isStarted: boolean) => void;
+  setIsFinished: (isFinished: boolean) => void;
   setPlayers: (players: Player[]) => void;
   setPhaseChoice: (phaseChoice: PhaseChoices) => void;
   setPhaseOrderChoice: (phaseOrderChoice: PhaseOrderChoices) => void;
 };
 
-const defaultData: Pick<DataContextType, "settings" | "rounds" | "standings"> =
-  {
-    settings: {
-      players: [
-        { number: 1, name: "" },
-        { number: 2, name: "" },
-      ],
-      phaseChoice: "default",
-      phaseOrderChoice: "normal",
-      phases: [],
-    },
-    rounds: [],
-    standings: [],
-  };
+const defaultData: Pick<
+  DataContextType,
+  "isStarted" | "isFinished" | "settings" | "rounds" | "standings"
+> = {
+  isStarted: false,
+  isFinished: false,
+  settings: {
+    players: [
+      { number: 1, name: "" },
+      { number: 2, name: "" },
+    ],
+    phaseChoice: "default",
+    phaseOrderChoice: "normal",
+    phases: [],
+  },
+  rounds: [],
+  standings: [],
+};
 
 const dataContext = createContext<DataContextType | undefined>(undefined);
 
 export function DataProvider({ children }: { children: React.ReactNode }) {
   const [data, setData] = useLocalStorage("phase-10-data", defaultData);
+
+  const updateData = useCallback(
+    <K extends keyof DataContextType>(key: K, value: DataContextType[K]) => {
+      setData((prevData) => ({
+        ...prevData,
+        [key]: value,
+      }));
+    },
+    [setData],
+  );
 
   const updateSettings = useCallback(
     <K extends keyof Settings>(key: K, value: Settings[K]) => {
@@ -82,6 +100,20 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       }));
     },
     [setData],
+  );
+
+  const setIsStarted = useCallback(
+    (isStarted: boolean) => {
+      updateData("isStarted", isStarted);
+    },
+    [updateData],
+  );
+
+  const setIsFinished = useCallback(
+    (isFinished: boolean) => {
+      updateData("isFinished", isFinished);
+    },
+    [updateData],
   );
 
   const setPlayers = useCallback(
@@ -108,11 +140,20 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
   const value = useMemo(
     () => ({
       ...data,
+      setIsStarted,
+      setIsFinished,
       setPlayers,
       setPhaseChoice,
       setPhaseOrderChoice,
     }),
-    [data, setPlayers, setPhaseChoice, setPhaseOrderChoice],
+    [
+      data,
+      setIsStarted,
+      setIsFinished,
+      setPlayers,
+      setPhaseChoice,
+      setPhaseOrderChoice,
+    ],
   );
 
   return <dataContext.Provider value={value}>{children}</dataContext.Provider>;

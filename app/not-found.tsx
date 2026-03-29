@@ -1,10 +1,6 @@
-import {
-  ArrowPathRoundedSquareIcon,
-  PlayIcon,
-} from "@heroicons/react/24/solid";
 import { type Metadata } from "next";
 
-import ButtonLink from "@/app/_ui/ButtonLink";
+import StartRestartButtons from "@/app/_components/StartRestartButtons";
 import Card from "@/app/_ui/Card";
 import Heading from "@/app/_ui/Heading";
 
@@ -24,16 +20,7 @@ export default function NotFound() {
         kaarten in ons spel!
       </p>
 
-      <div className="flex flex-col items-center gap-4">
-        <ButtonLink href="/game" variant="green">
-          <ArrowPathRoundedSquareIcon />
-          Hervat huidig spel
-        </ButtonLink>
-        <ButtonLink href="/setup" variant="red">
-          <PlayIcon />
-          Start nieuw spel
-        </ButtonLink>
-      </div>
+      <StartRestartButtons />
     </Card>
   );
 }
