@@ -11,6 +11,7 @@ export const MIN_PLAYERS: number = 2;
 
 export const MAX_PLAYERS: number = 6;
 
+// TODO: Currently selection is not yet implemented, but it will be in the future.
 export const PHASE_CHOICES: RadioChoice<PhaseChoices>[] = [
   {
     value: "default",
@@ -20,10 +21,10 @@ export const PHASE_CHOICES: RadioChoice<PhaseChoices>[] = [
     value: "short",
     label: "Kort",
   },
-  {
-    value: "selection",
-    label: "Selectie",
-  },
+  // {
+  //   value: "selection",
+  //   label: "Selectie",
+  // },
 ];
 
 export const PHASE_ORDER_CHOICES: RadioChoice<PhaseOrderChoices>[] = [

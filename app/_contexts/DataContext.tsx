@@ -48,6 +48,7 @@ type DataContextType = {
   isFinished: boolean;
   settings: Settings;
   rounds: Round[];
+  currentRound: number;
   standings: Standings;
   startGame: () => void;
   setIsFinished: (isFinished: boolean) => void;
@@ -55,6 +56,8 @@ type DataContextType = {
   setPhaseChoice: (phaseChoice: PhaseChoices) => void;
   setPhaseOrderChoice: (phaseOrderChoice: PhaseOrderChoices) => void;
   setPhases: (phases: Phase[]) => void;
+  addRoundScore: (score: Score) => void;
+  nextRound: () => void;
 };
 
 const defaultData: Pick<
@@ -82,6 +85,9 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
   const [data, setData] = useLocalStorage("phase-10-data", defaultData, {
     initializeWithValue: false,
   });
+
+  const currentRound =
+    data.rounds.length > 0 ? data.rounds[data.rounds.length - 1].round : 0;
 
   const updateData = useCallback(
     <K extends keyof DataContextType>(key: K, value: DataContextType[K]) => {
@@ -181,24 +187,112 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     [updateSettings],
   );
 
+  const addRoundScore = useCallback(
+    (score: Score) => {
+      const updatedRounds = [...data.rounds];
+      const currentRoundIndex = updatedRounds.findIndex(
+        (r) => r.round === currentRound,
+      );
+
+      if (currentRoundIndex !== -1) {
+        const existingScoreIndex = updatedRounds[
+          currentRoundIndex
+        ].score.findIndex((s) => s.player === score.player);
+
+        if (existingScoreIndex !== -1) {
+          updatedRounds[currentRoundIndex].score[existingScoreIndex] = score;
+        } else {
+          updatedRounds[currentRoundIndex].score.push(score);
+        }
+        updateData("rounds", updatedRounds);
+      }
+    },
+    [updateData, data.rounds, currentRound],
+  );
+
+  const updateStandings = useCallback(() => {
+    const newStandings = data.standings.map((standing) => {
+      const playerScores = data.rounds.flatMap((round) =>
+        round.score.filter((score) => score.player === standing.player),
+      );
+
+      const totalPoints = playerScores.reduce(
+        (total, score) => total + score.points,
+        0,
+      );
+
+      const currentPhase =
+        data.settings.phases[
+          Math.max(
+            0,
+            ...playerScores
+              .filter((score) => score.phaseCompleted)
+              .map((score) => score.phase),
+          )
+        ]?.number || 1;
+
+      return {
+        ...standing,
+        points: totalPoints,
+        currentPhase,
+      };
+    });
+
+    updateData("standings", newStandings);
+  }, [updateData, data.standings, data.rounds, data.settings.phases]);
+
+  const nextRound = useCallback(() => {
+    const nextRoundNumber = currentRound + 1;
+    const nextDistributorPlayer =
+      (data.rounds[currentRound - 1].distributorPlayer %
+        data.settings.players.length) +
+      1;
+    const nextStartingPlayer =
+      (data.rounds[currentRound - 1].startingPlayer %
+        data.settings.players.length) +
+      1;
+
+    const newRound: Round = {
+      round: nextRoundNumber,
+      distributorPlayer: nextDistributorPlayer,
+      startingPlayer: nextStartingPlayer,
+      score: [],
+    };
+
+    updateData("rounds", [...data.rounds, newRound]);
+    updateStandings();
+  }, [
+    updateData,
+    updateStandings,
+    data.rounds,
+    currentRound,
+    data.settings.players.length,
+  ]);
+
   const value = useMemo(
     () => ({
       ...data,
+      currentRound,
       startGame,
       setIsFinished,
       setPlayers,
       setPhaseChoice,
       setPhaseOrderChoice,
       setPhases,
+      addRoundScore,
+      nextRound,
     }),
     [
       data,
+      currentRound,
       startGame,
       setIsFinished,
       setPlayers,
       setPhaseChoice,
       setPhaseOrderChoice,
       setPhases,
+      addRoundScore,
+      nextRound,
     ],
   );
 

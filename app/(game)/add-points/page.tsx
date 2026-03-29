@@ -1,32 +1,11 @@
-import { ArchiveBoxIcon } from "@heroicons/react/24/solid";
 import { type Metadata } from "next";
 
-import AddPlayerPoints from "@/app/(game)/add-points/_components/AddPlayerPoints";
-import { DUMMY_CURRENT_ROUND, DUMMY_PLAYERS } from "@/app/_lib/dummy-data";
-import Button from "@/app/_ui/Button";
-import Heading from "@/app/_ui/Heading";
+import AddPoints from "@/app/(game)/add-points/_components/AddPoints";
 
 export const metadata: Metadata = {
   title: "Punten toevoegen",
 };
 
 export default function AddPointsPage() {
-  return (
-    <>
-      <Heading as="h2" className="text-center">
-        Punten toevoegen voor ronde {DUMMY_CURRENT_ROUND}
-      </Heading>
-
-      <div className="auto-grid my-10">
-        {DUMMY_PLAYERS.map((player) => (
-          <AddPlayerPoints key={player.key} player={player} />
-        ))}
-      </div>
-
-      <Button href="/game" className="mx-auto">
-        <ArchiveBoxIcon />
-        Opslaan
-      </Button>
-    </>
-  );
+  return <AddPoints />;
 }

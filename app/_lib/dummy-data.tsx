@@ -22,5 +22,3 @@ export const DUMMY_PLAYERS: Player[] = [
     points: 0,
   },
 ];
-
-export const DUMMY_CURRENT_ROUND: number = 3;
