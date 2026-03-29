@@ -1,9 +1,9 @@
 "use client";
 
-import { PlusIcon, UserGroupIcon } from "@heroicons/react/24/solid";
+import { PlusIcon, UserGroupIcon, MinusIcon } from "@heroicons/react/24/solid";
 
 import { useData } from "@/app/_contexts/DataContext";
-import { MAX_PLAYERS } from "@/app/_lib/constants";
+import { MAX_PLAYERS, MIN_PLAYERS } from "@/app/_lib/constants";
 import Card from "@/app/_ui/Card";
 import Heading from "@/app/_ui/Heading";
 
@@ -27,6 +27,12 @@ export default function Players() {
 
     if (players.length < MAX_PLAYERS) {
       setPlayers([...players, newPlayer]);
+    }
+  };
+
+  const handleRemovePlayer = () => {
+    if (players.length > MIN_PLAYERS) {
+      setPlayers(players.slice(0, -1));
     }
   };
 
@@ -64,6 +70,16 @@ export default function Players() {
         >
           <PlusIcon className="size-6" />
           Speler toevoegen
+        </button>
+      )}
+
+      {players.length > MIN_PLAYERS && (
+        <button
+          className="hocus:bg-stone-500 hocus:text-stone-50 mt-4 flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl border border-dashed border-stone-500 px-6 py-3 text-sm font-bold text-stone-500 uppercase transition-all duration-300"
+          onClick={handleRemovePlayer}
+        >
+          <MinusIcon className="size-6" />
+          Speler verwijderen
         </button>
       )}
     </Card>
