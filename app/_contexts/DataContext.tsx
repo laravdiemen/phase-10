@@ -1,12 +1,7 @@
 "use client";
 
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-} from "react";
+import { createContext, useCallback, useContext, useMemo } from "react";
+import { useLocalStorage } from "usehooks-ts";
 
 import { type PhaseChoices, type PhaseOrderChoices } from "@/app/_lib/types";
 
@@ -74,7 +69,7 @@ const defaultData: Pick<DataContextType, "settings" | "rounds" | "standings"> =
 const dataContext = createContext<DataContextType | undefined>(undefined);
 
 export function DataProvider({ children }: { children: React.ReactNode }) {
-  const [data, setData] = useState(defaultData);
+  const [data, setData] = useLocalStorage("phase-10-data", defaultData);
 
   const updateSettings = useCallback(
     <K extends keyof Settings>(key: K, value: Settings[K]) => {
@@ -86,7 +81,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
         },
       }));
     },
-    [],
+    [setData],
   );
 
   const setPlayers = useCallback(
