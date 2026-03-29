@@ -3,7 +3,7 @@ import { type Metadata } from "next";
 
 import AddPlayerPoints from "@/app/(game)/add-points/_components/AddPlayerPoints";
 import { DUMMY_CURRENT_ROUND, DUMMY_PLAYERS } from "@/app/_lib/dummy-data";
-import ButtonLink from "@/app/_ui/ButtonLink";
+import Button from "@/app/_ui/Button";
 import Heading from "@/app/_ui/Heading";
 
 export const metadata: Metadata = {
@@ -23,10 +23,10 @@ export default function AddPointsPage() {
         ))}
       </div>
 
-      <ButtonLink href="/game" className="mx-auto">
+      <Button href="/game" className="mx-auto">
         <ArchiveBoxIcon />
         Opslaan
-      </ButtonLink>
+      </Button>
     </>
   );
 }

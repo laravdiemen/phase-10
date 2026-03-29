@@ -8,7 +8,7 @@ import GameSettings from "@/app/(game)/setup/_components/GameSettings";
 import Players from "@/app/(game)/setup/_components/Players";
 import { useData } from "@/app/_contexts/DataContext";
 import { MAX_PLAYERS, MIN_PLAYERS } from "@/app/_lib/constants";
-import ButtonLink from "@/app/_ui/ButtonLink";
+import Button from "@/app/_ui/Button";
 
 const ERROR_MESSAGES = {
   MIN_PLAYERS: {
@@ -77,14 +77,14 @@ export default function Setup() {
         />
       </div>
 
-      <ButtonLink
+      <Button
         variant="yellow"
         className="mx-auto"
         onClick={handleOnClickStartGame}
       >
         <PlayIcon />
         Start het spel
-      </ButtonLink>
+      </Button>
     </>
   );
 }

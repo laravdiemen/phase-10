@@ -2,7 +2,7 @@ import { ChartBarIcon, PlayIcon, TrophyIcon } from "@heroicons/react/24/solid";
 import { type Metadata } from "next";
 
 import { DUMMY_PLAYERS } from "@/app/_lib/dummy-data";
-import ButtonLink from "@/app/_ui/ButtonLink";
+import Button from "@/app/_ui/Button";
 import Card from "@/app/_ui/Card";
 import Heading from "@/app/_ui/Heading";
 
@@ -45,10 +45,10 @@ export default function FinishPage() {
         </Card>
       </div>
 
-      <ButtonLink href="/setup" variant="yellow" className="mx-auto">
+      <Button href="/setup" variant="yellow" className="mx-auto">
         <PlayIcon />
         Start nieuw spel
-      </ButtonLink>
+      </Button>
     </>
   );
 }
