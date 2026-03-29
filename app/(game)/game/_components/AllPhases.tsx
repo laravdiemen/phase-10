@@ -38,7 +38,7 @@ export default function AllPhases() {
           return (
             <div
               key={phase.number}
-              className={`mb-4 flex flex-col gap-1 rounded-xl px-5 py-3 ${
+              className={`mb-4 inline-flex w-full flex-col gap-1 rounded-xl px-5 py-3 ${
                 isActive ? "bg-yellow" : "bg-stone-100"
               } ${isFinished ? "opacity-30" : ""}`}
             >

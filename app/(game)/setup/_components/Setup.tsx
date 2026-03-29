@@ -43,24 +43,27 @@ export default function Setup() {
 
   const handleOnClickStartGame = () => {
     setErrors([]);
+    const newErrors = [];
 
     if (players.length < MIN_PLAYERS) {
-      setErrors((prev) => [...prev, ERROR_MESSAGES.MIN_PLAYERS]);
+      newErrors.push(ERROR_MESSAGES.MIN_PLAYERS);
     }
 
     if (players.length > MAX_PLAYERS) {
-      setErrors((prev) => [...prev, ERROR_MESSAGES.MAX_PLAYERS]);
+      newErrors.push(ERROR_MESSAGES.MAX_PLAYERS);
     }
 
     if (players.some(({ name }) => name.trim() === "")) {
-      setErrors((prev) => [...prev, ERROR_MESSAGES.PLAYER_NAMES]);
+      newErrors.push(ERROR_MESSAGES.PLAYER_NAMES);
     }
 
     if (phaseChoice === "selection" && phases.length === 0) {
-      setErrors((prev) => [...prev, ERROR_MESSAGES.MIN_PHASE_SELECTION]);
+      newErrors.push(ERROR_MESSAGES.MIN_PHASE_SELECTION);
     }
 
-    if (errors.length === 0) {
+    setErrors(newErrors);
+
+    if (newErrors.length === 0) {
       startGame();
       router.push("/game");
     }

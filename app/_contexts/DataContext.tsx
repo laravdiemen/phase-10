@@ -43,6 +43,8 @@ type Standings = {
   points: number;
 }[];
 
+type Result = Standings[number] & { name: string; place: number };
+
 type DataContextType = {
   isStarted: boolean;
   isFinished: boolean;
@@ -50,6 +52,8 @@ type DataContextType = {
   rounds: Round[];
   currentRound: number;
   standings: Standings;
+  result: Result[];
+  winner: Result[];
   startGame: () => void;
   setIsFinished: (isFinished: boolean) => void;
   setPlayers: (players: Player[]) => void;
@@ -165,6 +169,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     (phaseOrderChoice: PhaseOrderChoices) => {
       updateSettings("phaseOrderChoice", phaseOrderChoice);
 
+      // TODO: Fix phase numbers
       if (phaseOrderChoice === "random") {
         const shuffledPhases = [...data.settings.phases].sort(
           () => Math.random() - 0.5,
@@ -242,6 +247,8 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
   }, [updateData, data.standings, data.rounds, data.settings.phases]);
 
   const nextRound = useCallback(() => {
+    // TODO: Check if there is a winner, if so, set the game as finished and do not create a new round
+
     const nextRoundNumber = currentRound + 1;
     const nextDistributorPlayer =
       (data.rounds[currentRound - 1].distributorPlayer %
@@ -269,6 +276,44 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     data.settings.players.length,
   ]);
 
+  const result = useMemo(() => {
+    const sortedStandings = [...data.standings].sort((a, b) => {
+      if (b.currentPhase === a.currentPhase) {
+        return a.points - b.points;
+      }
+      return b.currentPhase - a.currentPhase;
+    });
+
+    const enrichedStandings = sortedStandings.map((standing) => {
+      const playerInfo = data.settings.players.find(
+        (p) => p.number === standing.player,
+      );
+      return {
+        ...standing,
+        name: playerInfo?.name || "",
+      };
+    });
+
+    return enrichedStandings.map((standing, index) => {
+      const previousStanding = enrichedStandings[index - 1];
+      const place =
+        previousStanding &&
+        previousStanding.currentPhase === standing.currentPhase &&
+        previousStanding.points === standing.points
+          ? index
+          : index + 1;
+
+      return {
+        ...standing,
+        place,
+      };
+    });
+  }, [data.standings, data.settings.players]);
+
+  const winner = useMemo(() => {
+    return result.filter((r) => r.place === 1);
+  }, [result]);
+
   const value = useMemo(
     () => ({
       ...data,
@@ -281,6 +326,8 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       setPhases,
       addRoundScore,
       nextRound,
+      result,
+      winner,
     }),
     [
       data,
@@ -293,6 +340,8 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
       setPhases,
       addRoundScore,
       nextRound,
+      result,
+      winner,
     ],
   );
 
