@@ -30,7 +30,7 @@ export default function AllPhases() {
         <Square3Stack3DIcon className="icon-square" />
         Alle fasen
       </Heading>
-      <div className="columns-2">
+      <div className={`${phases.length > 5 ? "columns-2" : ""}`}>
         {phases.map((phase) => {
           const isActive = phase.number === currentPhase;
           const isFinished = finishedPhases.includes(phase.number);

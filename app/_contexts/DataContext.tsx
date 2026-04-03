@@ -118,6 +118,13 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
 
   const startGame = useCallback(() => {
     updateData("isStarted", true);
+    updateSettings(
+      "phases",
+      data.settings.phases.map((phase, index) => ({
+        ...phase,
+        number: index + 1,
+      })),
+    );
     updateData(
       "standings",
       data.settings.players.map(({ number }) => ({
@@ -134,7 +141,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
         score: [],
       },
     ]);
-  }, [updateData, data.settings.players]);
+  }, [updateData, updateSettings, data.settings]);
 
   const setIsFinished = useCallback(
     (isFinished: boolean) => {
@@ -150,46 +157,47 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     [updateSettings],
   );
 
-  const setPhaseChoice = useCallback(
-    (phaseChoice: PhaseChoices) => {
-      updateSettings("phaseChoice", phaseChoice);
-
-      if (phaseChoice === "default") {
-        updateSettings("phases", PHASES);
-      } else if (phaseChoice === "short") {
-        updateSettings("phases", PHASES_SHORT);
-      } else {
-        updateSettings("phases", []);
-      }
-    },
-    [updateSettings],
-  );
-
-  const setPhaseOrderChoice = useCallback(
-    (phaseOrderChoice: PhaseOrderChoices) => {
-      updateSettings("phaseOrderChoice", phaseOrderChoice);
-
-      // TODO: Fix phase numbers
-      if (phaseOrderChoice === "random") {
-        const shuffledPhases = [...data.settings.phases].sort(
-          () => Math.random() - 0.5,
-        );
-        updateSettings("phases", shuffledPhases);
-      } else {
-        const sortedPhases = [...data.settings.phases].sort(
-          (a, b) => a.number - b.number,
-        );
-        updateSettings("phases", sortedPhases);
-      }
-    },
-    [updateSettings, data.settings.phases],
-  );
-
   const setPhases = useCallback(
     (phases: Phase[]) => {
       updateSettings("phases", phases);
     },
     [updateSettings],
+  );
+
+  const updatePhases = useCallback(
+    (phaseChoice: PhaseChoices, phaseOrderChoice: PhaseOrderChoices) => {
+      let phases: Phase[] = data.settings.phases;
+
+      if (phaseChoice === "default") {
+        phases = PHASES;
+      } else if (phaseChoice === "short") {
+        phases = PHASES_SHORT;
+      }
+
+      const orderedPhases =
+        phaseOrderChoice === "random"
+          ? [...phases].sort(() => Math.random() - 0.5)
+          : [...phases].sort((a, b) => a.number - b.number);
+
+      setPhases(orderedPhases);
+    },
+    [data.settings.phases, setPhases],
+  );
+
+  const setPhaseChoice = useCallback(
+    (phaseChoice: PhaseChoices) => {
+      updateSettings("phaseChoice", phaseChoice);
+      updatePhases(phaseChoice, data.settings.phaseOrderChoice);
+    },
+    [updateSettings, updatePhases, data.settings.phaseOrderChoice],
+  );
+
+  const setPhaseOrderChoice = useCallback(
+    (phaseOrderChoice: PhaseOrderChoices) => {
+      updateSettings("phaseOrderChoice", phaseOrderChoice);
+      updatePhases(data.settings.phaseChoice, phaseOrderChoice);
+    },
+    [updateSettings, updatePhases, data.settings.phaseChoice],
   );
 
   const addRoundScore = useCallback(
