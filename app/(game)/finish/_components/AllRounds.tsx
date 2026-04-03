@@ -19,15 +19,22 @@ export default function AllRounds() {
         Alle rondes
       </Heading>
       <ul>
-        {/* TODO: Add styling */}
         {rounds.map(
           (round) =>
             round.score.length !== 0 && (
-              <li key={round.round} className="mb-4">
-                <span className="block font-medium">Ronde {round.round}</span>
+              <li
+                key={round.round}
+                className="gap-x-4 rounded-xl bg-stone-100 px-5 py-3 not-last:mb-4"
+              >
+                <div className="mb-1 font-medium">Ronde {round.round}</div>
                 {round.score.map((score) => (
-                  <span key={score.player} className="block">
-                    <span>{players[score.player - 1].name}: </span>
+                  <div
+                    key={score.player}
+                    className="mb-0.5 text-sm text-stone-500"
+                  >
+                    <span className="font-medium">
+                      {players[score.player - 1].name}:{" "}
+                    </span>
                     <span>
                       {score.phaseCompleted
                         ? `Fase ${score.phase} behaald`
@@ -35,7 +42,7 @@ export default function AllRounds() {
                     </span>
                     {" - "}
                     <span>{score.points} punten</span>
-                  </span>
+                  </div>
                 ))}
               </li>
             ),

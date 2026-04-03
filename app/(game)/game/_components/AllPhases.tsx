@@ -30,15 +30,15 @@ export default function AllPhases() {
         <Square3Stack3DIcon className="icon-square" />
         Alle fasen
       </Heading>
-      <div className={`${phases.length > 5 ? "columns-2" : ""}`}>
+      <ul className={`${phases.length > 5 ? "columns-2" : ""}`}>
         {phases.map((phase) => {
           const isActive = phase.number === currentPhase;
           const isFinished = finishedPhases.includes(phase.number);
 
           return (
-            <div
+            <li
               key={phase.number}
-              className={`mb-4 inline-flex w-full flex-col gap-1 rounded-xl px-5 py-3 ${
+              className={`inline-flex w-full flex-col gap-1 rounded-xl px-5 py-3 not-last:mb-4 ${
                 isActive ? "bg-yellow" : "bg-stone-100"
               } ${isFinished ? "opacity-30" : ""}`}
             >
@@ -46,10 +46,10 @@ export default function AllPhases() {
               <span className={`text-sm ${isActive ? "" : "text-stone-500"}`}>
                 {phase.value}
               </span>
-            </div>
+            </li>
           );
         })}
-      </div>
+      </ul>
     </Card>
   );
 }

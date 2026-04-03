@@ -16,11 +16,26 @@ export default function Result() {
         Volledige uitslag
       </Heading>
       <ul>
-        {/* TODO: Add styling */}
         {result.map((player) => (
-          <li key={player.player} className="flex items-center gap-2">
-            <span>{player.place}.</span>
-            {player.name}: fase {player.currentPhase} - {player.points} punten
+          <li
+            key={player.player}
+            className="flex flex-wrap items-center gap-x-4 gap-y-2 rounded-xl bg-stone-100 px-5 py-3 not-last:mb-4"
+          >
+            <span className="h-full border-r-2 border-stone-200 pr-3 text-xl">
+              {player.place}.
+            </span>
+
+            <div className="flex flex-col">
+              <span className="font-medium">{player.name}</span>
+              <span className="text-sm text-stone-500">
+                Fase {player.currentPhase}
+              </span>
+            </div>
+
+            <div className="ml-auto flex flex-col items-end">
+              <span className="text-xl font-bold">{player.points}</span>
+              <span className="text-xs text-stone-500">Punten</span>
+            </div>
           </li>
         ))}
       </ul>
