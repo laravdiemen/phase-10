@@ -1,6 +1,13 @@
 "use client";
 
-import { createContext, useCallback, useContext, useMemo } from "react";
+import { useRouter } from "next/navigation";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+} from "react";
 import { useLocalStorage } from "usehooks-ts";
 
 import { PHASES, PHASES_SHORT } from "@/app/_lib/constants";
@@ -54,6 +61,7 @@ type DataContextType = {
   standings: Standings;
   result: Result[];
   winner: Result[];
+  resetData: () => void;
   startGame: () => void;
   setIsFinished: (isFinished: boolean) => void;
   setPlayers: (players: Player[]) => void;
@@ -86,6 +94,8 @@ const defaultData: Pick<
 const dataContext = createContext<DataContextType | undefined>(undefined);
 
 export function DataProvider({ children }: { children: React.ReactNode }) {
+  const router = useRouter();
+
   const [data, setData] = useLocalStorage("phase-10-data", defaultData, {
     initializeWithValue: false,
   });
@@ -116,8 +126,13 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     [setData],
   );
 
+  const resetData = useCallback(() => {
+    setData(defaultData);
+  }, [setData]);
+
   const startGame = useCallback(() => {
     updateData("isStarted", true);
+    updateData("isFinished", false);
     updateSettings(
       "phases",
       data.settings.phases.map((phase, index) => ({
@@ -217,6 +232,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
         } else {
           updatedRounds[currentRoundIndex].score.push(score);
         }
+
         updateData("rounds", updatedRounds);
       }
     },
@@ -234,15 +250,18 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
         0,
       );
 
-      const currentPhase =
-        data.settings.phases[
-          Math.max(
-            0,
-            ...playerScores
-              .filter((score) => score.phaseCompleted)
-              .map((score) => score.phase),
-          )
-        ]?.number || 1;
+      let currentPhase =
+        Math.max(
+          0,
+          ...playerScores
+            .filter((score) => score.phaseCompleted)
+            .map((score) => score.phase),
+        ) + 1;
+
+      if (currentPhase > data.settings.phases.length) {
+        setIsFinished(true);
+        currentPhase = data.settings.phases.length;
+      }
 
       return {
         ...standing,
@@ -252,11 +271,9 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     });
 
     updateData("standings", newStandings);
-  }, [updateData, data.standings, data.rounds, data.settings.phases]);
+  }, [setIsFinished, updateData, data.settings, data.standings, data.rounds]);
 
   const nextRound = useCallback(() => {
-    // TODO: Check if there is a winner, if so, set the game as finished and do not create a new round
-
     const nextRoundNumber = currentRound + 1;
     const nextDistributorPlayer =
       (data.rounds[currentRound - 1].distributorPlayer %
@@ -276,12 +293,14 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
 
     updateData("rounds", [...data.rounds, newRound]);
     updateStandings();
+    router.push("/game");
   }, [
     updateData,
     updateStandings,
     data.rounds,
     currentRound,
     data.settings.players.length,
+    router,
   ]);
 
   const result = useMemo(() => {
@@ -322,10 +341,17 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     return result.filter((r) => r.place === 1);
   }, [result]);
 
+  useEffect(() => {
+    if (data.isFinished) {
+      router.push("finish");
+    }
+  }, [data.isFinished, router]);
+
   const value = useMemo(
     () => ({
       ...data,
       currentRound,
+      resetData,
       startGame,
       setIsFinished,
       setPlayers,
@@ -340,6 +366,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     [
       data,
       currentRound,
+      resetData,
       startGame,
       setIsFinished,
       setPlayers,

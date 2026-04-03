@@ -1,7 +1,6 @@
 "use client";
 
 import { ArchiveBoxIcon } from "@heroicons/react/24/solid";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import AddPlayerPoints from "@/app/(game)/add-points/_components/AddPlayerPoints";
@@ -31,8 +30,6 @@ export default function AddPoints() {
     nextRound,
   } = useData();
 
-  const router = useRouter();
-
   const handleOnClickSave = () => {
     setErrors([]);
     const newErrors = [];
@@ -56,9 +53,6 @@ export default function AddPoints() {
 
     if (newErrors.length === 0) {
       nextRound();
-
-      // TODO: if there is a winner, navigate to the end screen instead of the next round
-      router.push("/game");
     }
   };
 

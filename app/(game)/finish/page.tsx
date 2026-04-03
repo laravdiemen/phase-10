@@ -1,10 +1,9 @@
-import { PlayIcon } from "@heroicons/react/24/solid";
 import { type Metadata } from "next";
 
 import AllRounds from "@/app/(game)/finish/_components/AllRounds";
 import FinishHeading from "@/app/(game)/finish/_components/FinishHeading";
 import Result from "@/app/(game)/finish/_components/Result";
-import Button from "@/app/_ui/Button";
+import StartButton from "@/app/_components/StartButton";
 
 export const metadata: Metadata = {
   title: "We hebben een winnaar!",
@@ -20,10 +19,9 @@ export default function FinishPage() {
         <AllRounds />
       </div>
 
-      <Button href="/setup" variant="yellow" className="mx-auto">
-        <PlayIcon />
+      <StartButton variant="yellow" className="mx-auto">
         Start nieuw spel
-      </Button>
+      </StartButton>
     </>
   );
 }
