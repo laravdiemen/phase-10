@@ -3,6 +3,8 @@ import { type Metadata } from "next";
 import AllRounds from "@/app/(game)/finish/_components/AllRounds";
 import FinishHeading from "@/app/(game)/finish/_components/FinishHeading";
 import Result from "@/app/(game)/finish/_components/Result";
+import ProtectedRouteIsFinished from "@/app/_components/ProtectedRouteIsFinished";
+import ProtectedRouteIsStarted from "@/app/_components/ProtectedRouteIsStarted";
 import StartButton from "@/app/_components/StartButton";
 
 export const metadata: Metadata = {
@@ -11,17 +13,19 @@ export const metadata: Metadata = {
 
 export default function FinishPage() {
   return (
-    <>
-      <FinishHeading />
+    <ProtectedRouteIsStarted>
+      <ProtectedRouteIsFinished>
+        <FinishHeading />
 
-      <div className="auto-grid my-10">
-        <Result />
-        <AllRounds />
-      </div>
+        <div className="auto-grid my-10">
+          <Result />
+          <AllRounds />
+        </div>
 
-      <StartButton variant="yellow" className="mx-auto">
-        Start nieuw spel
-      </StartButton>
-    </>
+        <StartButton variant="yellow" className="mx-auto">
+          Start nieuw spel
+        </StartButton>
+      </ProtectedRouteIsFinished>
+    </ProtectedRouteIsStarted>
   );
 }
