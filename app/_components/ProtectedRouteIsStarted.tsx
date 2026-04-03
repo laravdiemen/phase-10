@@ -16,7 +16,6 @@ export default function ProtectedRouteIsStarted({
   const router = useRouter();
 
   useEffect(() => {
-    console.log("isStarted", isStarted);
     if (!isStarted) {
       router.push("/");
     }
