@@ -250,7 +250,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
         0,
       );
 
-      let currentPhase =
+      const currentPhase =
         Math.max(
           0,
           ...playerScores
@@ -260,7 +260,6 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
 
       if (currentPhase > data.settings.phases.length) {
         setIsFinished(true);
-        currentPhase = data.settings.phases.length;
       }
 
       return {

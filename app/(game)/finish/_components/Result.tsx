@@ -28,7 +28,7 @@ export default function Result() {
             <div className="flex flex-col">
               <span className="font-medium">{player.name}</span>
               <span className="text-sm text-stone-500">
-                Fase {player.currentPhase}
+                Fase {player.currentPhase - 1}
               </span>
             </div>
 
