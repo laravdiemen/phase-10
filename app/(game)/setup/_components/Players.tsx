@@ -5,6 +5,7 @@ import { PlusIcon, UserGroupIcon, MinusIcon } from "@heroicons/react/24/solid";
 import { useData } from "@/app/_contexts/DataContext";
 import { MAX_PLAYERS, MIN_PLAYERS } from "@/app/_lib/constants";
 import Alert from "@/app/_ui/Alert";
+import Button from "@/app/_ui/Button";
 import Card from "@/app/_ui/Card";
 import Heading from "@/app/_ui/Heading";
 import Input from "@/app/_ui/Input";
@@ -72,23 +73,27 @@ export default function Players({ errors }: PlayersProps) {
       ))}
 
       {players.length < MAX_PLAYERS && (
-        <button
-          className="hocus:bg-stone-500 hocus:text-stone-50 mt-8 flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl border border-dashed border-stone-500 px-6 py-3 text-sm font-bold text-stone-500 uppercase transition-all duration-300"
+        <Button
           onClick={handleAddPlayer}
+          variant="outline"
+          size="small"
+          className="mt-8 w-full"
         >
-          <PlusIcon className="size-6" />
+          <PlusIcon />
           Speler toevoegen
-        </button>
+        </Button>
       )}
 
       {players.length > MIN_PLAYERS && (
-        <button
-          className="hocus:bg-stone-500 hocus:text-stone-50 mt-4 flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl border border-dashed border-stone-500 px-6 py-3 text-sm font-bold text-stone-500 uppercase transition-all duration-300"
+        <Button
           onClick={handleRemovePlayer}
+          variant="outline"
+          size="small"
+          className="mt-4 w-full"
         >
-          <MinusIcon className="size-6" />
+          <MinusIcon />
           Speler verwijderen
-        </button>
+        </Button>
       )}
     </Card>
   );
