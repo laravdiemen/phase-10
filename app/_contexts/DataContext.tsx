@@ -342,7 +342,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (data.isFinished) {
-      router.push("finish");
+      router.push("/finish");
     }
   }, [data.isFinished, router]);
 
