@@ -1,6 +1,11 @@
 1:"$Sreact.fragment"
-2:I[20752,["/phase-10/_next/static/chunks/0988f955b26b5bca.js"],""]
-3:I[42897,["/phase-10/_next/static/chunks/3e61cbef2b632a62.js","/phase-10/_next/static/chunks/632e84412d93509b.js"],"OutletBoundary"]
-4:"$Sreact.suspense"
-0:{"buildId":"YlbJiwZCiNQsmaCZ6RuRd","rsc":["$","$1","c",{"children":[[["$","h2",null,{"children":"Winnaar"}],["$","$L2",null,{"href":"/setup","children":"Start nieuw spel"}]],[["$","script","script-0",{"src":"/phase-10/_next/static/chunks/0988f955b26b5bca.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
-5:null
+2:I[24088,["/phase-10/_next/static/chunks/e794bcc34e4009a1.js","/phase-10/_next/static/chunks/972991b8aa2f8128.js","/phase-10/_next/static/chunks/abc881146799acf8.js"],"default"]
+3:I[89014,["/phase-10/_next/static/chunks/e794bcc34e4009a1.js","/phase-10/_next/static/chunks/972991b8aa2f8128.js","/phase-10/_next/static/chunks/abc881146799acf8.js"],"default"]
+4:I[86350,["/phase-10/_next/static/chunks/e794bcc34e4009a1.js","/phase-10/_next/static/chunks/972991b8aa2f8128.js","/phase-10/_next/static/chunks/abc881146799acf8.js"],"default"]
+5:I[76899,["/phase-10/_next/static/chunks/e794bcc34e4009a1.js","/phase-10/_next/static/chunks/972991b8aa2f8128.js","/phase-10/_next/static/chunks/abc881146799acf8.js"],"default"]
+6:I[83444,["/phase-10/_next/static/chunks/e794bcc34e4009a1.js","/phase-10/_next/static/chunks/972991b8aa2f8128.js","/phase-10/_next/static/chunks/abc881146799acf8.js"],"default"]
+7:I[78527,["/phase-10/_next/static/chunks/e794bcc34e4009a1.js","/phase-10/_next/static/chunks/972991b8aa2f8128.js","/phase-10/_next/static/chunks/abc881146799acf8.js"],"default"]
+8:I[26563,["/phase-10/_next/static/chunks/a2f1ad064465c7ca.js","/phase-10/_next/static/chunks/4ff8147191ff5ea2.js"],"OutletBoundary"]
+9:"$Sreact.suspense"
+0:{"buildId":"UQ0tzqK-r88DnO4BjiTZJ","rsc":["$","$1","c",{"children":[["$","$L2",null,{"children":["$","$L3",null,{"children":[["$","$L4",null,{}],["$","div",null,{"className":"auto-grid my-10","children":[["$","$L5",null,{}],["$","$L6",null,{}]]}],["$","$L7",null,{"variant":"yellow","className":"mx-auto","children":"Start nieuw spel"}]]}]}],[["$","script","script-0",{"src":"/phase-10/_next/static/chunks/abc881146799acf8.js","async":true}]],["$","$L8",null,{"children":["$","$9",null,{"name":"Next.MetadataOutlet","children":"$@a"}]}]]}],"loading":null,"isPartial":false}
+a:null

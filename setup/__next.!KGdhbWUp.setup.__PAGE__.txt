@@ -1,6 +1,6 @@
 1:"$Sreact.fragment"
-2:I[20752,["/phase-10/_next/static/chunks/0988f955b26b5bca.js"],""]
-3:I[42897,["/phase-10/_next/static/chunks/3e61cbef2b632a62.js","/phase-10/_next/static/chunks/632e84412d93509b.js"],"OutletBoundary"]
+2:I[63734,["/phase-10/_next/static/chunks/e794bcc34e4009a1.js","/phase-10/_next/static/chunks/972991b8aa2f8128.js","/phase-10/_next/static/chunks/3024616126f555db.js"],"default"]
+3:I[26563,["/phase-10/_next/static/chunks/a2f1ad064465c7ca.js","/phase-10/_next/static/chunks/4ff8147191ff5ea2.js"],"OutletBoundary"]
 4:"$Sreact.suspense"
-0:{"buildId":"YlbJiwZCiNQsmaCZ6RuRd","rsc":["$","$1","c",{"children":[[["$","h2",null,{"children":"Opstarten"}],["$","$L2",null,{"href":"/game","children":"Start"}]],[["$","script","script-0",{"src":"/phase-10/_next/static/chunks/0988f955b26b5bca.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+0:{"buildId":"UQ0tzqK-r88DnO4BjiTZJ","rsc":["$","$1","c",{"children":[[["$","h2",null,{"className":"text-3xl text-stone-500 font-bold mb-2 text-center has-[.icon-square]:flex has-[.icon-square]:items-center has-[.icon-square]:gap-3","children":"Nieuw spel opstarten"}],["$","$L2",null,{}]],[["$","script","script-0",{"src":"/phase-10/_next/static/chunks/3024616126f555db.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
 5:null
