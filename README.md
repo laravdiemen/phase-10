@@ -25,3 +25,11 @@ To build the project for production:
 ```sh
 pnpm build
 ```
+
+## 🚀 Deploy
+
+To deploy the project to github pages:
+
+```sh
+pnpm run deploy
+```
