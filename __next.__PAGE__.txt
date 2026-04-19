@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[20752,["/phase-10/_next/static/chunks/0988f955b26b5bca.js"],""]
+3:I[42897,["/phase-10/_next/static/chunks/3e61cbef2b632a62.js","/phase-10/_next/static/chunks/632e84412d93509b.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"buildId":"YlbJiwZCiNQsmaCZ6RuRd","rsc":["$","$1","c",{"children":[[["$","h1",null,{"className":"font-russo-one mb-4 -skew-x-12 text-center text-5xl","children":["Phase",["$","br",null,{}],"10"]}],["$","$L2",null,{"href":"/setup","children":"Start nieuw spel"}],["$","$L2",null,{"href":"/game","children":"Hervat huidig spel"}]],[["$","script","script-0",{"src":"/phase-10/_next/static/chunks/0988f955b26b5bca.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+5:null
