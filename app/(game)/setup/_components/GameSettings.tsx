@@ -46,7 +46,7 @@ export default function GameSettings({ errors }: GameSettingsProps) {
     <Card>
       <Heading as="h3">
         <AdjustmentsHorizontalIcon className="icon-square" />
-        Spelinstellingen
+        Spel&shy;instellingen
       </Heading>
 
       {errors.map((error, index) => (

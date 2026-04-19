@@ -34,7 +34,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body
         className={`${russoOne.variable} ${roboto.variable} bg-stone-50 font-sans text-stone-950 antialiased`}
       >
-        <main className="mx-auto flex min-h-screen max-w-7xl px-4 py-6">
+        <main className="mx-auto flex min-h-dvh max-w-7xl px-4 py-6">
           <div
             className="pointer-events-none fixed inset-0 -z-1"
             aria-hidden="true"

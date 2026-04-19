@@ -25,7 +25,7 @@ export default function Heading({
 
   return (
     <HeadingTag
-      className={`${defaultClass} ${className} has-[.icon-square]:flex has-[.icon-square]:items-center has-[.icon-square]:gap-3`}
+      className={`${defaultClass} ${className} hyphens-manual has-[.icon-square]:flex has-[.icon-square]:flex-wrap has-[.icon-square]:items-center has-[.icon-square]:gap-3`}
     >
       {children}
     </HeadingTag>

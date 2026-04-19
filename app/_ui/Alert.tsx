@@ -43,7 +43,7 @@ export default function Alert({
   return (
     <div
       {...props}
-      className={`mb-4 flex items-center gap-4 rounded-xl px-6 py-4 [&_svg]:size-6 ${variantClass} ${className}`}
+      className={`mb-4 flex items-center gap-4 rounded-xl px-6 py-4 [&_svg]:size-6 [&_svg]:min-w-6 ${variantClass} ${className}`}
     >
       {Icon()}
 
