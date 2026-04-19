@@ -36,7 +36,7 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const variantClass = variantClasses[variant] || "";
-  const sharedClasses = `flex w-fit items-center gap-2 rounded-xl px-6 py-4 font-bold uppercase shadow-xl transition-all duration-300 [&_svg]:size-6 ${variantClass} ${className}`;
+  const sharedClasses = `flex w-fit items-center cursor-pointer gap-2 rounded-xl px-6 py-4 font-bold uppercase shadow-xl transition-all duration-300 [&_svg]:size-6 ${variantClass} ${className}`;
 
   if ("href" in props) {
     const linkProps = props as ButtonAsLinkProps;
