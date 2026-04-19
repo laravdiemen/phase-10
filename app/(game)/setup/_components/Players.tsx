@@ -7,6 +7,7 @@ import { MAX_PLAYERS, MIN_PLAYERS } from "@/app/_lib/constants";
 import Alert from "@/app/_ui/Alert";
 import Card from "@/app/_ui/Card";
 import Heading from "@/app/_ui/Heading";
+import Input from "@/app/_ui/Input";
 
 type PlayersProps = {
   errors: { component: string; message: string }[];
@@ -58,20 +59,16 @@ export default function Players({ errors }: PlayersProps) {
       ))}
 
       {players.map(({ number, name }, index) => (
-        <div key={index} className="mb-4 flex flex-col gap-1">
-          <label htmlFor={`player-${index}`} className="font-medium">
-            Speler {number}
-          </label>
-          <input
-            type="text"
-            id={`player-${index}`}
-            name={`player-${index}`}
-            placeholder="Vul de naam van de speler in..."
-            className="rounded-xl border border-stone-300 px-5 py-3"
-            value={name}
-            onChange={(e) => handleOnChange(index, e.target.value)}
-          />
-        </div>
+        <Input
+          className="mb-4 flex flex-col gap-1"
+          handleOnChange={(value) => handleOnChange(index, value)}
+          id={`player-${index}`}
+          key={index}
+          label={`Speler ${number}`}
+          placeholder="Vul de naam van de speler in..."
+          type="text"
+          value={name}
+        />
       ))}
 
       {players.length < MAX_PLAYERS && (
