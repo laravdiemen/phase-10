@@ -183,10 +183,14 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     (phaseChoice: PhaseChoices, phaseOrderChoice: PhaseOrderChoices) => {
       let phases: Phase[] = data.settings.phases;
 
-      if (phaseChoice === "default") {
-        phases = PHASES;
-      } else if (phaseChoice === "short") {
-        phases = PHASES_SHORT;
+      if (phaseChoice !== data.settings.phaseChoice) {
+        if (phaseChoice === "default") {
+          phases = PHASES;
+        } else if (phaseChoice === "short") {
+          phases = PHASES_SHORT;
+        } else if (phaseChoice === "selection") {
+          phases = [];
+        }
       }
 
       const orderedPhases =
@@ -196,7 +200,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
 
       setPhases(orderedPhases);
     },
-    [data.settings.phases, setPhases],
+    [data.settings.phases, data.settings.phaseChoice, setPhases],
   );
 
   const setPhaseChoice = useCallback(
